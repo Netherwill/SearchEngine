@@ -11,7 +11,7 @@ public class Indexer {
 	}	
 
 	public void add(Field f){		
-		db.insert(f,identifier);	
+		//db.insert(f,identifier);	
 	}
 	
 	public void close(){

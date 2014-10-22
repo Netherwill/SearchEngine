@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class FieldSearch {
 	private ArrayList<String> result;
 	private Database db;
-	
+	//find the database for search
 	public FieldSearch(Database database){
 		this.db=database;
 	}

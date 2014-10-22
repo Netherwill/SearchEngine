@@ -13,5 +13,9 @@ public class integrationTest {
 	public void databaseIntegrationTest(){
 		
 	}
+	@Test
+	public void indexerTest(){
+		
+	}
 
 }

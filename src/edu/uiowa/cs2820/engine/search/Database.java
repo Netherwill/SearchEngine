@@ -7,13 +7,13 @@ public class Database
 {	
 	private static Vector<Data> v;
 	
-	public static void store(Field field, String id) 
+	public static void store(String field, String id) 
 	{
 		Data d = new Data(field,id);
 		v.add(d);
 	}
 	
-	public static Field retrieveField(int index) 
+	public static String retrieveField(int index) 
 	{
 		return v.get(index).getField();
 	}
@@ -22,16 +22,16 @@ public class Database
 	{
 		return v.get(index).getId();
 	}
-	
+
 	static class Data 
 	{
-		private Field field;
+		private String field;
 		private String id;
-		Data(Field field, String id) {
+		Data(String field, String id) {
 			this.field = field;
 			this.id = id;
 		}
-		Field getField() 
+		String getField() 
 		{
 			return field;
 		}

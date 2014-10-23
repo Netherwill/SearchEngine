@@ -10,59 +10,44 @@ import edu.uiowa.cs2820.engine.search.Database;
 import edu.uiowa.cs2820.engine.search.Field;
 
 
-class myField {
-	
-	private String Name;
-	private	String Value;
-	
-	public myField(String fieldName, String fieldValue){
-		this.Name=fieldName;
-		this.Value=fieldValue;		
+/*class myField extends Field{
+	String fieldName;
+	String fieldValue;
+
+	public myField(String fieldName, String fieldValue) {
+		super(fieldName, fieldValue);
+		this.fieldName=fieldName;
+		this.fieldValue=fieldValue;
 	}
-	public String getFieldName(){
-		return Name;
-	}
-	public String getFieldValue(){
-		return Value;
-	}
-}
+
+}*/
 
 public class databaseTest {
 	@Test
 	public void databaseInsertationTest() throws Exception{
+		Database testdatabase= new Database();
 		
-		Database testDatabase = new Database();
+		/*myField f1 =new myField("author","ZeyiTao");
+		testdatabase.insert(f1, "test1-1");
+		assertEquals(testdatabase.size(),1);
+		assertEquals(testdatabase.querySingleField(f1),"test1-1");
 		
-		String fileName = "test1";
-		String [] content = {"bookName ObjectOrientProgramming",
-							 "ISBN 12345678",
-							 "publishYear 2014",
-							 "author ZeyiTao KhashiReyes ZeyiTao",
-							 "category textbook science mathemtics",
-							 "edition 3rd"
-							 };
+		myField f2 =new myField("author","ZeyiTao");
+		testdatabase.insert(f1, "test2-1");
+		//assertEquals(testdatabase.size(),1);
+		assertEquals(testdatabase.querySingleField(f1),"test1-1test2-1");*/
 		
-		
-		HashMap<myField,String> lol = new HashMap<myField,String>();
-		
-		myField testfield1 =new myField("1","2");
-		lol.put(testfield1, "1");
-		myField testfield2 =new myField("1","2");
-		
-		Field testfield3 =new Field("ISBN","12345678");
-		
+		for(int i=0; i<5;i++){
+			Field f =new Field("author","ZeyiTao");
+			testdatabase.insert(f, "test1-"+i);
+		}
+		Field f1 =new Field("author","ZeyiTao");
+		assertEquals(testdatabase.querySingleField(f1),"test1-0test1-1test1-2test1-3test1-4");
+		assertEquals(testdatabase.size(),1);
 		
 		
-		lol.put(testfield2, "2");
-		assertEquals(lol.keySet().size(),1);
-		
-		
-		//testDatabase.insert(testfield1, "1");
-		//testDatabase.insert(testfield2, "2");
-		//assertEquals(testfield1.twoFieldAreEqualString(testfield2),"true");
-		//assertEquals(testDatabase.size(),2);
-		//assertEquals(testDatabase.querySingleField(testfield3),"");
-		
-	}}
+	}
+
+}
 
 

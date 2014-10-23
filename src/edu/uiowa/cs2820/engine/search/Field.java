@@ -1,47 +1,35 @@
 package edu.uiowa.cs2820.engine.search;
 
-public class Field {
-	
-	private String Name;
-	private	String Value;
-	
-	public Field(String fieldName, String fieldValue){
-		this.Name=fieldName;
-		this.Value=fieldValue;		
-	}
-	public String getFieldName(){
-		return Name;
-	}
-	public String getFieldValue(){
-		return Value;
-	}
-	
-	
-	
-	
-	/*public String twoFieldAreEqualString(Field f){
-		String result = "";
-		if(this.fieldName==f.fieldName&this.fieldValue==f.fieldValue){
-			result+="true";
-		}
-		else{
-			result+="false";
-		}
-		return result;
-	}
-	
-	public boolean twoFieldAreEqual(Field f){
-		boolean result = false;
-		if(this.fieldName==f.fieldName&this.fieldValue==f.fieldValue){
-			result=true;
-		}
-		else{
-			result=false;
-		}
-		return result;
-	}
-	
-	public String toString(){
-		return fieldName + ":" + fieldValue;
-	}*/
+public class Field
+{
+    private String fieldName;
+    private String value;
+
+    public Field(String fieldName, String value)
+    {
+        this.fieldName = fieldName;
+        this.value = value;
+    }
+
+    public String getFieldName()
+    {
+        return fieldName;
+    }
+
+    public String getValue()
+    {
+        return value;
+    }
+    
+    public int hashCode()
+    {
+        return (fieldName + value).hashCode();
+    }
+    
+    public boolean equals(Object other)
+    {
+        if (other instanceof Field)
+            return ((Field)other).toString().equals(toString());
+        return false;
+    }
 }

@@ -16,7 +16,6 @@ public class Database {
 	public void insert(Field f, String identifier) {
 		if(map.containsKey(f)){
 			map.get(f).add(identifier);
-			//size++;	
 		}
 		else{
 			ArrayList<String> newIdentifier =new ArrayList<String>();
@@ -24,18 +23,6 @@ public class Database {
 			map.put(f, newIdentifier);
 		}
 	}
-	
-	/*private boolean isFieldInKeySet(Field f){
-		boolean result= false;
-		Set keySet=map.keySet();
-		List keyList = null;
-		keyList.addAll(keySet);
-		for(int  i=0; i<keyList.size(); i++){
-			if(keyList.get(i).)
-		}
-		return result;
-	}*/
-	
 	
 	public int size(){
 		return map.keySet().size();

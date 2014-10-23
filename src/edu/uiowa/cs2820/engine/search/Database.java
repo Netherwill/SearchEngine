@@ -8,31 +8,28 @@ import java.util.Vector;
 
 public class Database 
 {	
-	private Vector<Data> v;
-	public Database() 
-	{
-		v = new Vector<Data>();
-	}
-	public void store(String field, String id) {
+	public static Vector<Data> v = new Vector<Data>();
+	
+	public static void store(String field, String id) {
 		Data d = new Data(field,id);
 		v.add(d);
 	}
 	
-	public String getField(int i) 
+	public static String getField(int i) 
 	{
 		return v.get(i).Field();
 	}
 	
-	public String getId(int i) 
+	public static String getId(int i) 
 	{
 		return v.get(i).Id();
 	}
 	
-	public int getSize() {
+	public static int getSize() {
 		return v.size();
 	}
 
-	class Data 
+	static class Data 
 	{
 		String field;
 		String id;

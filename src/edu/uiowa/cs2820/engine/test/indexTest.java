@@ -11,81 +11,67 @@ import edu.uiowa.cs2820.engine.search.Database;
 import edu.uiowa.cs2820.engine.search.Field;
 import edu.uiowa.cs2820.engine.search.Indexer;
 
+//using these two classes (myField, myDatabase) as mock classes for testing
+//but actually you do not have to use this
+/*
+class myField extends Field{
+	String fieldName;
+	String fieldValue;
+
+	public myField(String fieldName, String fieldValue) {
+		super(fieldName, fieldValue);
+		this.fieldName=fieldName;
+		this.fieldValue=fieldValue;
+	}
+
+}
 class myDatabase extends Database{
 	
 	private HashMap<Field, ArrayList<String>> map;
 	
-	public myDatabase() {
-		map = new HashMap<Field, ArrayList<String>>();
+	public myDatabase(){
+		map=new HashMap<Field,ArrayList<String>>();
 	}
-	
 	@Override
 	public void insert(Field f, String identifier) {
-		if (map.containsKey(f)){
+		if(map.containsKey(f)){
 			map.get(f).add(identifier);
 		}
 		else{
-			ArrayList<String> list = new ArrayList<String>();
-			list.add(identifier);
-			map.put(f, list);
+			ArrayList<String> newIdentifier =new ArrayList<String>();
+			newIdentifier.add(identifier);
+			map.put(f, newIdentifier);
 		}
 	}
-	
-	@Override
-	public int size() {
-		return map.keySet().size();
-	}
-	@Override
-	public String querySingleField(Field f) throws Exception{
-		String temp="";
-		if(map.get(f)==null){
-			throw new Exception("there is no such field in database");
-			
-		}else{
-			ArrayList<String> resultList = new ArrayList<String>();
-			resultList=map.get(f);
-			for(int i=0; i<resultList.size();i++){
-				temp+=resultList.get(i);
-				}
-		}
-		return temp;
-	}
-	
-}
+}*/
 
-public class indexTest {
-	myDatabase db1;
-	  
+public class indexTest {	
 	@Test
 	public void indexTestAdd() throws Exception{
 		
+		//build new database and check size
+		Database tdb= new Database();
+		assertEquals(tdb.size(),0);
 		
-		Field F1= new Field("a","b");
-		
-		Field F2= new Field("a","b");
-		
-		//assertEquals(F1,F2);
-		
-		
-		myDatabase db1= new myDatabase();
-		assertEquals(db1.size(),0);
-		
-		Indexer i = new Indexer("iD1",db1);
+		//adding first object
+		Indexer i = new Indexer("iD1",tdb);
 		Field f1 =new Field("author","ZeyiTao");
 		i.add(f1);
-		assertEquals(db1.size(), 1);
-		assertEquals(db1.querySingleField(f1),"iD1");
+		assertEquals(tdb.size(), 1);
+		assertEquals(tdb.querySingleField(f1),"iD1");
 		
-		Indexer i1 = new Indexer("iD2",db1);
+		//adding same field but different identifier
+		Indexer i1 = new Indexer("iD2",tdb);
 		Field f2 = new Field("author","ZeyiTao");
-		//assertEquals(f1,f2);
-		
 		i1.add(f2);
-		assertEquals(db1.size(), 1);
+		assertEquals(tdb.size(), 1);
+		assertEquals(tdb.querySingleField(f1),"iD1iD2");
 		
-		assertEquals(db1.querySingleField(f1),"iD1iD2");
+		//adding another field with identifier iD1 
+		Field f3 = new Field("year","2014");
+		i.add(f3);
+		assertEquals(tdb.size(), 2);
+		assertEquals(tdb.querySingleField(f3),"iD1");
+		
 	}
-	
-	
-
 }

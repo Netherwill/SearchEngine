@@ -20,16 +20,17 @@ public class Field
     {
         return value;
     }
-    
-    public int hashCode()
-    {
-        return (fieldName + value).hashCode();
+    //provide my implementation of equals() in Field class
+    @Override
+    public boolean equals(Object other){
+    	if (!(other instanceof Field)){
+    		return false;
+    	}
+    	return true;
     }
-    
-    public boolean equals(Object other)
-    {
-        if (other instanceof Field)
-            return ((Field)other).toString().equals(toString());
-        return false;
+    //override hashCode() since we are using hash table in our database
+    @Override
+    public int hashCode(){
+    	return (this.fieldName+this.value).hashCode(); 
     }
 }

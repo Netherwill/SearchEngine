@@ -10,8 +10,15 @@ public class fieldTest {
 		String s1="ISBN";
 		String v1="123456789";
 		Field testfield = new Field(s1,v1);
-		//assertEquals(testfield.getFieldName(),s1);
-		//assertEquals(testfield.getFieldValue(),v1);
+		assertEquals(testfield.getFieldName(),s1);
+		assertEquals(testfield.getValue(),v1);
+	}
+	@Test
+	public void twoObjectAreEqual(){
+	
+		Field F1= new Field("a","b");
+		Field F2= new Field("a","b");
+		assertEquals(F1,F2);	
 	}
 
 }

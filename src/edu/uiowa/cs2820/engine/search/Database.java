@@ -27,6 +27,10 @@ public class Database
 	{
 		return v.get(i).Id();
 	}
+	
+	public int getSize() {
+		return v.size();
+	}
 
 	class Data 
 	{

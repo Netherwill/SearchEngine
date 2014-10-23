@@ -12,9 +12,9 @@ public class Indexer {
 	public void add(Field f){		
 		db.insert(f,identifier);	
 	}
-	
+	//be care for using this it is going to clear the entire database!!! 
 	public void close(){
-		
+		db.close();
 	}
 
 }

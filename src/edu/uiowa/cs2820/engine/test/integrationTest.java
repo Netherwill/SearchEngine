@@ -9,43 +9,66 @@ import edu.uiowa.cs2820.engine.search.FieldSearch;
 import org.junit.*;
 
 public class integrationTest {
-
 	@Test
-	public void databaseIntegrationTest() throws Exception{
-		Database testDatabase = new Database();
+	public void IntegrationTest() throws Exception{
+		
+		Database testdb = new Database();
+
 		String fileName = "test1";
 		String [] content = {"bookName ObjectOrientProgramming",
-							 "ISBN 12345678",
-							 "publishYear 2014",
-							 "author ZeyiTao KhashiReyes ZeyiTao",
-							 "category textbook science mathemtics",
-							 "edition 3rd"
-		};
+				 			"ISBN 12345678",
+				 			"publishYear 2014",
+				 			"author ZeyiTao KhashiReyes",
+				 			"category textbook science mathemtics",
+				 			"edition 3rd"
+							};
 		
+		String fileName1 = "test2";
+		String [] content1 = {"bookName ProgrammingLanguageConcept",
+				 			"ISBN 87654321",
+				 			"publishYear 2014",
+				 			"author ZeyiTao KhashiReyes",
+				 			"category textbook science language",
+				 			"edition 2rd"
+							};
+		//loading the fake data with identifier test1-* and we have 9 new field 
 		for(int i=0; i<content.length; i++){
 			String identifier=fileName + "-" + i; 
 			String[] temp =content[i].split(" ");
 			String fieldName= temp[0];
 			for(int j=1; j<temp.length; j++){
 				Field tempfield =new Field(fieldName, temp[j]);
-				testDatabase.insert(tempfield, identifier);
+				Indexer tempI = new Indexer(identifier,testdb);
+				tempI.add(tempfield);
 			}			
 		}
+		assertEquals(testdb.size(),9);
 		
-		assertEquals(testDatabase.size(),9);
-		Field testfield0=new Field("ISBN","12345678");
-		testDatabase.insert(testfield0, "test1-1");
-		assertEquals(testDatabase.querySingleField(testfield0),"[test1-1]");
-		Field testfield1=new Field("edition","3rd");
-		testDatabase.insert(testfield1, "test1-5");
-		assertEquals(testDatabase.querySingleField(testfield1),"[test1-5]");
-		Field testfield2=new Field("author","KhashiReyes");
-		testDatabase.insert(testfield2, "test1-3");
-		assertEquals(testDatabase.querySingleField(testfield2),"[test1-3]");
-	}
-	@Test
-	public void indexerTest(){
+		//loading the fake data with identifier test2-* and we adding 4 new fields
+		for(int i=0; i<content1.length; i++){
+			String identifier=fileName1 + "-" + i; 
+			String[] temp =content1[i].split(" ");
+			String fieldName= temp[0];
+			for(int j=1; j<temp.length; j++){
+				Field tempfield =new Field(fieldName, temp[j]);
+				Indexer tempI = new Indexer(identifier,testdb);
+				tempI.add(tempfield);
+			}			
+		}
+		assertEquals(testdb.size(),13);
+		//we start field search test
+		//general test with only one identifier return
+		FieldSearch fs1 = new FieldSearch(testdb);
+		Field f0 = new Field("bookName","ObjectOrientProgramming");
+		assertEquals("[test1-0]",fs1.findEquals(f0).toString());
+		//general test with multiple identifier return
+		Field f1 = new Field("author","ZeyiTao");
+		assertEquals("[test1-3, test2-3]",fs1.findEquals(f1).toString());
+		//test the given field not in database
+		//it will throws an exception now i can not catch this exception but 
+		//if you do the following test the exception will show in windows
+		//Field f2 = new Field("price","100");
+		//assertEquals("",fs1.findEquals(f2).toString());
 		
 	}
-
 }

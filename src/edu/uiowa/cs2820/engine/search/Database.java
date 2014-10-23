@@ -51,6 +51,10 @@ public class Database {
 		return true;
 	}
 	
+	public void close(){
+		map.clear();
+	}
+	
 	//only for test purpose never use for querying
 	public String querySingleField(Field f) throws Exception{
 		String temp="";

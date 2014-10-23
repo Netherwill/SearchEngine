@@ -1,7 +1,6 @@
 package org.uiowa.cs2820.engine;
 
 import java.util.Vector;
-import org.uiowa.cs2820.engine.Field;
 
 public class Database 
 {	

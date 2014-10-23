@@ -12,17 +12,17 @@ public class Database
 		v.add(d);
 	}
 	
-	public String retrieveField(int index) 
+	public String getField(int index) 
 	{
-		return v.get(index).getField();
+		return v.get(index).Field();
 	}
 	
-	public String retrieveId(int index) 
+	public String getId(int index) 
 	{
-		return v.get(index).getId();
+		return v.get(index).Id();
 	}
 
-	static class Data 
+	class Data 
 	{
 		private String field;
 		private String id;
@@ -30,11 +30,11 @@ public class Database
 			this.field = field;
 			this.id = id;
 		}
-		String getField() 
+		String Field() 
 		{
 			return field;
 		}
-		String getId() 
+		String Id() 
 		{
 			return id;
 		}

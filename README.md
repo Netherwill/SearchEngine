@@ -4,6 +4,4 @@ Object Oriented Software Design project
 
 Porject Name: SearchEngine
 
-Group Member: 
-
-
+Team #7 Khashi Reyes, Tao Zeyi, Yicheng Zhao, Justin Shroyer

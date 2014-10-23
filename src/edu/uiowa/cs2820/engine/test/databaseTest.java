@@ -19,6 +19,7 @@ public class DatabaseTest {
 		d.store(s1, s2);
 		assertEquals(d.getField(0), s1);
 		assertEquals(d.getId(0), s2);
+		assertEquals(d.getSize(), 1);
 	}
 
 }

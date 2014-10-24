@@ -10,20 +10,20 @@ import java.util.Set;
 
 public class Database {
 	
-	private static HashMap<Field, ArrayList<String>> map = new HashMap<Field,ArrayList<String>>();
+	private static HashMap<Field, ArrayList<Integer>> map = new HashMap<Field,ArrayList<Integer>>();
 	
-	public static void store(Field f, String identifier) {
+	public static void store(Field f, int identifier) {
 		if(map.containsKey(f)){
 			map.get(f).add(identifier);
 		}
 		else{
-			ArrayList<String> newIdentifier =new ArrayList<String>();
+			ArrayList<Integer> newIdentifier =new ArrayList<Integer>();
 			newIdentifier.add(identifier);
 			map.put(f, newIdentifier);
 		}
 	}
-	public static ArrayList<String> getValue(Field f) throws Exception{
-		ArrayList<String> result=null;
+	public static ArrayList<Integer> getValue(Field f) throws Exception{
+		ArrayList<Integer> result=null;
 		if(map.containsKey(f)){
 			result=map.get(f);
 		}else{
@@ -51,14 +51,14 @@ public class Database {
 	}
 	
 	//only for test purpose never use for querying
-	public static String querySingleField(Field f) throws Exception{
-		String temp="";
+	public static int querySingleField(Field f) throws Exception{
+		int temp=0;
 		if(map.get(f)==null){
 			throw new Exception("there is no such field in database");
 			
 		}else{
 			
-			ArrayList<String> resultList = new ArrayList<String>();
+			ArrayList<Integer> resultList = new ArrayList<Integer>();
 			resultList=map.get(f);
 			for(int i=0; i<resultList.size();i++){
 				temp+=resultList.get(i);

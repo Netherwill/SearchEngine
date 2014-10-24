@@ -20,7 +20,7 @@ public class DatabaseTest {
 		assertEquals(tdb.getSize(),0);
 		
 		//check the first object in database
-		Field tf = new Field("author", "ZeyiTao");
+		Field tf = new Field("Hello", "World");
 		tdb.store(tf, "1-1");
 		assertEquals(tdb.getSize(),1);
 		

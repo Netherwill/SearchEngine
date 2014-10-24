@@ -10,13 +10,9 @@ import java.util.Set;
 
 public class Database {
 	
-	private HashMap<Field, ArrayList<String>> map;
+	private static HashMap<Field, ArrayList<String>> map = new HashMap<Field,ArrayList<String>>();
 	
-	public Database(){
-		map=new HashMap<Field,ArrayList<String>>();
-	}
-	
-	public void store(Field f, String identifier) {
+	public static void store(Field f, String identifier) {
 		if(map.containsKey(f)){
 			map.get(f).add(identifier);
 		}
@@ -26,7 +22,7 @@ public class Database {
 			map.put(f, newIdentifier);
 		}
 	}
-	public ArrayList<String> getValue(Field f) throws Exception{
+	public static ArrayList<String> getValue(Field f) throws Exception{
 		ArrayList<String> result=null;
 		if(map.containsKey(f)){
 			result=map.get(f);
@@ -37,17 +33,17 @@ public class Database {
 		
 	}
 	
-	public int getSize(){
+	public static int getSize(){
 		return map.keySet().size();
 	}
 	
-	public Set<Field> getKey(){
+	public static Set<Field> getKey(){
 		Set<Field> keySet=null;
 		keySet=map.keySet();
 		return keySet;
 	}
 	
-	public boolean isEmpty(){
+	public static boolean isEmpty(){
 		if(map.isEmpty()){
 			return false;
 		}
@@ -55,7 +51,7 @@ public class Database {
 	}
 	
 	//only for test purpose never use for querying
-	public String querySingleField(Field f) throws Exception{
+	public static String querySingleField(Field f) throws Exception{
 		String temp="";
 		if(map.get(f)==null){
 			throw new Exception("there is no such field in database");
